@@ -23,14 +23,7 @@ targets:
       properties:
         NSAppTransportSecurity:
           NSAllowsLocalNetworking: true
-          NSExceptionDomains:
-            127.0.0.1:
-              NSExceptionAllowsInsecureHTTPLoads: true
-            localhost:
-              NSExceptionAllowsInsecureHTTPLoads: true
-            192.168.8.25:
-              NSExceptionAllowsInsecureHTTPLoads: true
-        NSLocalNetworkUsageDescription: GreenVest uses your local network to connect to the backend running on your Mac.
+        NSLocalNetworkUsageDescription: GreenVest can connect to a backend for local debugging, but the intended production setup uses a public cloud backend.
         UILaunchStoryboardName: LaunchScreen
         UIApplicationSupportsIndirectInputEvents: true
         UISupportedInterfaceOrientations:

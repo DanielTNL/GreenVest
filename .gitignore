@@ -3,9 +3,15 @@ __pycache__/
 .pytest_cache/
 .env.local
 config/.env.local
+.DS_Store
+**/__pycache__/
+*.db
+*.db-shm
+*.db-wal
 
 db/*.sqlite3-shm
 db/*.sqlite3-wal
+db/*.sqlite3
 
 ui/ios/.deriveddata/
 ui/ios/.deriveddata-tests/
@@ -13,11 +19,6 @@ ui/ios/.deriveddata-tests/
 *.xcuserstate
 *.xcworkspace/xcuserdata/
 *.xcodeproj/xcuserdata/
-.DS_Store
-**/__pycache__/
-*.db
-*.db-shm
-*.db-wal
 logs/*
 !logs/.gitkeep
 data/processed/rate_limit_state.json

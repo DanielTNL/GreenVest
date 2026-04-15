@@ -670,40 +670,6 @@ class AppService:
             for row in result_rows
         ]
 
-
-def _display_model_name(value: str | None) -> str:
-    text = (value or "").strip().lower()
-    if text in {"truth_model", "truth model", "naive", "baseline"}:
-        return "Truth Model"
-    if text in {"working_model", "working model", "arima"}:
-        return "Working Model"
-    if text in {"updated_working_model", "updated working model", "prophet"}:
-        return "Updated Working Model"
-    return value or "Model"
-
-
-def _semantic_model_key_from_name(value: str | None) -> str:
-    display = _display_model_name(value)
-    if display == "Truth Model":
-        return "truth_model"
-    if display == "Working Model":
-        return "working_model"
-    if display == "Updated Working Model":
-        return "updated_working_model"
-    return "working_model"
-
-
-def _safe_summary_from_models(models: list[dict[str, Any]], *, status: str) -> str:
-    if status != "completed":
-        return "Predictions are stored and waiting for end-of-period market data."
-    ranked = sorted(models, key=lambda item: item.get("absolute_error") if item.get("absolute_error") is not None else float("inf"))
-    if not ranked:
-        return "No summary available."
-    best = ranked[0]
-    predicted = float(best.get("predicted_return") or 0.0)
-    actual = float(best.get("actual_return") or 0.0)
-    return f"{best.get('display_name', 'Model')} performed best with predicted {predicted:.2%} versus actual {actual:.2%}."
-
     def _simulation_config(
         self,
         *,
@@ -809,6 +775,40 @@ def _safe_summary_from_models(models: list[dict[str, Any]], *, status: str) -> s
                     }
                 )
         return history
+
+
+def _display_model_name(value: str | None) -> str:
+    text = (value or "").strip().lower()
+    if text in {"truth_model", "truth model", "naive", "baseline"}:
+        return "Truth Model"
+    if text in {"working_model", "working model", "arima"}:
+        return "Working Model"
+    if text in {"updated_working_model", "updated working model", "prophet"}:
+        return "Updated Working Model"
+    return value or "Model"
+
+
+def _semantic_model_key_from_name(value: str | None) -> str:
+    display = _display_model_name(value)
+    if display == "Truth Model":
+        return "truth_model"
+    if display == "Working Model":
+        return "working_model"
+    if display == "Updated Working Model":
+        return "updated_working_model"
+    return "working_model"
+
+
+def _safe_summary_from_models(models: list[dict[str, Any]], *, status: str) -> str:
+    if status != "completed":
+        return "Predictions are stored and waiting for end-of-period market data."
+    ranked = sorted(models, key=lambda item: item.get("absolute_error") if item.get("absolute_error") is not None else float("inf"))
+    if not ranked:
+        return "No summary available."
+    best = ranked[0]
+    predicted = float(best.get("predicted_return") or 0.0)
+    actual = float(best.get("actual_return") or 0.0)
+    return f"{best.get('display_name', 'Model')} performed best with predicted {predicted:.2%} versus actual {actual:.2%}."
 
 
 def _risk_report_to_dict(report: RiskReport) -> dict[str, Any]:
