@@ -1,0 +1,84 @@
+name: GreenVest
+options:
+  bundleIdPrefix: com.daniellobo
+configs:
+  Debug: debug
+  Release: release
+schemes:
+  GreenVest:
+    build:
+      targets:
+        GreenVest: all
+    test:
+      targets:
+        - GreenVestTests
+        - GreenVestUITests
+targets:
+  GreenVest:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    info:
+      path: GreenVest/Resources/Info.plist
+      properties:
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+          NSExceptionDomains:
+            127.0.0.1:
+              NSExceptionAllowsInsecureHTTPLoads: true
+            localhost:
+              NSExceptionAllowsInsecureHTTPLoads: true
+            192.168.8.25:
+              NSExceptionAllowsInsecureHTTPLoads: true
+        NSLocalNetworkUsageDescription: GreenVest uses your local network to connect to the backend running on your Mac.
+        UILaunchStoryboardName: LaunchScreen
+        UIApplicationSupportsIndirectInputEvents: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    sources:
+      - path: GreenVest/Sources
+      - path: GreenVest/Assets.xcassets
+      - path: GreenVest/Resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.daniellobo.greenvest
+        PRODUCT_NAME: GreenVest
+        SWIFT_VERSION: 5.0
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        "CODE_SIGNING_ALLOWED[sdk=iphonesimulator*]": NO
+        "CODE_SIGNING_REQUIRED[sdk=iphonesimulator*]": NO
+        "CODE_SIGN_IDENTITY[sdk=iphonesimulator*]": ""
+  GreenVestTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: GreenVest/Tests
+    dependencies:
+      - target: GreenVest
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.daniellobo.greenvest.tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/GreenVest.app/GreenVest"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+  GreenVestUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: GreenVest/UITests
+    dependencies:
+      - target: GreenVest
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.daniellobo.greenvest.uitests
+        GENERATE_INFOPLIST_FILE: YES

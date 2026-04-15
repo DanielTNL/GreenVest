@@ -1,0 +1,21 @@
+app = "greenvest-api-replace-me"
+primary_region = "ams"
+
+[build]
+
+[env]
+  APP_STORAGE_ROOT = "/data"
+  PORT = "8080"
+  RUN_SCHEDULER = "true"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_start_machines = true
+  auto_stop_machines = false
+  min_machines_running = 1
+  processes = ["app"]
+
+[[mounts]]
+  source = "greenvest_data"
+  destination = "/data"

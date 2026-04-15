@@ -1,0 +1,607 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		020A8F8D52958E7C5238E8B3 /* MetricsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678CDB25F671C2A67D32BA92 /* MetricsViews.swift */; };
+		0D859103B7C2BFC07642C962 /* BackendAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA66229033E07AECFC077F7 /* BackendAPIClientTests.swift */; };
+		1CA73811DA9701F1D7CA3FD7 /* GreenVestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D61F574A711EAC51BD0E49C /* GreenVestApp.swift */; };
+		2CD30A520721B3642CBF163D /* BackendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5A8EF4FD040630476D046C /* BackendService.swift */; };
+		2E826A9D0EAE5F56ECFB373E /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08FD5E455120FC93071148D /* ViewModelTests.swift */; };
+		44DE85B86F9006A41473BC45 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6707BE65B2A41A00A95F0378 /* AppTheme.swift */; };
+		4B0123E813BC5F2E66F04FBF /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD9BD2A41DAEA059F6E380 /* SharedViews.swift */; };
+		5868612E2B1A30532DE6671E /* SimulationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8847D59C03AB1B9E2F55C9 /* SimulationViews.swift */; };
+		639B6F6B15AC292BEB4A8AC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66DB118D1201C5A109A6E5C7 /* LaunchScreen.storyboard */; };
+		9845B26F346B3560A19C6A8B /* StocksViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C374FBA2262FEDD64978F /* StocksViews.swift */; };
+		B5C30676BED7177D91125B5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86FFFD7FC9F2CFA7E9BC19ED /* Assets.xcassets */; };
+		B774B3BDF909969A448060C0 /* AlertsSettingsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCD1ACB1402E497F226285C /* AlertsSettingsViews.swift */; };
+		BCAA2BB4E443A23BEB4BD084 /* GreenVestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9143BA6FB16A9A0E164C071 /* GreenVestUITests.swift */; };
+		BFFCAD129B7264A0338CCAE0 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBA91096E6FA466E79F1EE4 /* RootTabView.swift */; };
+		CC9810A4C1C88C028BF84779 /* ChatViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C645056251733709ED4E522C /* ChatViews.swift */; };
+		CCC4C4D33022687522611763 /* MacroViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CFBBE6879E8FCA3776225D /* MacroViews.swift */; };
+		D3072B1FF3E0EE3403E74C82 /* AppSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15398B6A963CCE85D87F1DDF /* AppSupport.swift */; };
+		D36C726E62F6D93AF8F0F246 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A9A638BFF56E33DFD3E73 /* ViewModels.swift */; };
+		E903E33FAD387BD4191B4A34 /* BasketComposerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB05AB430FCAC7CAA23471 /* BasketComposerViews.swift */; };
+		F4123EA3DC42CC3F360AAF5D /* Info 2.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFB23200C99DCE7A4CE6CB22 /* Info 2.plist */; };
+		F8766EFFEB19C190D81F7BCB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B738B4BE25F5FD86DE7F1A4 /* Models.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		721E0B7D4394BD557B0B0CD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 41B9558453F701848192823C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94B154C5448D294F2196FA85;
+			remoteInfo = GreenVest;
+		};
+		D0FBFF0D29BE6BE11DACA8D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 41B9558453F701848192823C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94B154C5448D294F2196FA85;
+			remoteInfo = GreenVest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		08AD9BD2A41DAEA059F6E380 /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
+		0A5A8EF4FD040630476D046C /* BackendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendService.swift; sourceTree = "<group>"; };
+		0B738B4BE25F5FD86DE7F1A4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		15398B6A963CCE85D87F1DDF /* AppSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSupport.swift; sourceTree = "<group>"; };
+		1F7C374FBA2262FEDD64978F /* StocksViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViews.swift; sourceTree = "<group>"; };
+		26A6622B7A269530E82B979F /* GreenVestTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = GreenVestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B31867940C669DA6D2CF586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		38BA3A2033A3354491EC0DF2 /* GreenVestUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = GreenVestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AA66229033E07AECFC077F7 /* BackendAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendAPIClientTests.swift; sourceTree = "<group>"; };
+		4D8847D59C03AB1B9E2F55C9 /* SimulationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationViews.swift; sourceTree = "<group>"; };
+		515A9A638BFF56E33DFD3E73 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
+		66DB118D1201C5A109A6E5C7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6707BE65B2A41A00A95F0378 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		678CDB25F671C2A67D32BA92 /* MetricsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsViews.swift; sourceTree = "<group>"; };
+		76CFBBE6879E8FCA3776225D /* MacroViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroViews.swift; sourceTree = "<group>"; };
+		86FFFD7FC9F2CFA7E9BC19ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8D61F574A711EAC51BD0E49C /* GreenVestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenVestApp.swift; sourceTree = "<group>"; };
+		BEAB05AB430FCAC7CAA23471 /* BasketComposerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketComposerViews.swift; sourceTree = "<group>"; };
+		C08FD5E455120FC93071148D /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
+		C645056251733709ED4E522C /* ChatViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViews.swift; sourceTree = "<group>"; };
+		DFCD1ACB1402E497F226285C /* AlertsSettingsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsSettingsViews.swift; sourceTree = "<group>"; };
+		E18F5F17B12E373A3C67EFAF /* GreenVest.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = GreenVest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFB23200C99DCE7A4CE6CB22 /* Info 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info 2.plist"; sourceTree = "<group>"; };
+		F9143BA6FB16A9A0E164C071 /* GreenVestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenVestUITests.swift; sourceTree = "<group>"; };
+		FFBA91096E6FA466E79F1EE4 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		22E97512018848C65E5C5D3F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EFB23200C99DCE7A4CE6CB22 /* Info 2.plist */,
+				2B31867940C669DA6D2CF586 /* Info.plist */,
+				66DB118D1201C5A109A6E5C7 /* LaunchScreen.storyboard */,
+			);
+			name = Resources;
+			path = GreenVest/Resources;
+			sourceTree = "<group>";
+		};
+		850D3F47EC519CD251FD1812 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4AA66229033E07AECFC077F7 /* BackendAPIClientTests.swift */,
+				C08FD5E455120FC93071148D /* ViewModelTests.swift */,
+			);
+			name = Tests;
+			path = GreenVest/Tests;
+			sourceTree = "<group>";
+		};
+		8ABE510377960884F360C0DE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DFCD1ACB1402E497F226285C /* AlertsSettingsViews.swift */,
+				15398B6A963CCE85D87F1DDF /* AppSupport.swift */,
+				6707BE65B2A41A00A95F0378 /* AppTheme.swift */,
+				0A5A8EF4FD040630476D046C /* BackendService.swift */,
+				BEAB05AB430FCAC7CAA23471 /* BasketComposerViews.swift */,
+				C645056251733709ED4E522C /* ChatViews.swift */,
+				8D61F574A711EAC51BD0E49C /* GreenVestApp.swift */,
+				76CFBBE6879E8FCA3776225D /* MacroViews.swift */,
+				678CDB25F671C2A67D32BA92 /* MetricsViews.swift */,
+				0B738B4BE25F5FD86DE7F1A4 /* Models.swift */,
+				FFBA91096E6FA466E79F1EE4 /* RootTabView.swift */,
+				08AD9BD2A41DAEA059F6E380 /* SharedViews.swift */,
+				4D8847D59C03AB1B9E2F55C9 /* SimulationViews.swift */,
+				1F7C374FBA2262FEDD64978F /* StocksViews.swift */,
+				515A9A638BFF56E33DFD3E73 /* ViewModels.swift */,
+			);
+			name = Sources;
+			path = GreenVest/Sources;
+			sourceTree = "<group>";
+		};
+		A65697822ED5DA162594206A = {
+			isa = PBXGroup;
+			children = (
+				CB331AB0E58239E499DEAEF5 /* GreenVest */,
+				22E97512018848C65E5C5D3F /* Resources */,
+				8ABE510377960884F360C0DE /* Sources */,
+				850D3F47EC519CD251FD1812 /* Tests */,
+				C761DF2C13D1B39A93D89949 /* UITests */,
+				BABE30960F64662D12BD0597 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BABE30960F64662D12BD0597 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E18F5F17B12E373A3C67EFAF /* GreenVest.app */,
+				26A6622B7A269530E82B979F /* GreenVestTests.xctest */,
+				38BA3A2033A3354491EC0DF2 /* GreenVestUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C761DF2C13D1B39A93D89949 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				F9143BA6FB16A9A0E164C071 /* GreenVestUITests.swift */,
+			);
+			name = UITests;
+			path = GreenVest/UITests;
+			sourceTree = "<group>";
+		};
+		CB331AB0E58239E499DEAEF5 /* GreenVest */ = {
+			isa = PBXGroup;
+			children = (
+				86FFFD7FC9F2CFA7E9BC19ED /* Assets.xcassets */,
+			);
+			path = GreenVest;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		492554EDC4426CBE45D4E690 /* GreenVestUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F10383D8261698595AACC190 /* Build configuration list for PBXNativeTarget "GreenVestUITests" */;
+			buildPhases = (
+				5B054E45F1F2F08DF1218E83 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				250C53F9F616647011DF90B3 /* PBXTargetDependency */,
+			);
+			name = GreenVestUITests;
+			packageProductDependencies = (
+			);
+			productName = GreenVestUITests;
+			productReference = 38BA3A2033A3354491EC0DF2 /* GreenVestUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		94B154C5448D294F2196FA85 /* GreenVest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2293CA66401907E1DA219C5E /* Build configuration list for PBXNativeTarget "GreenVest" */;
+			buildPhases = (
+				E6DC848AFD214104357325A1 /* Sources */,
+				D6E592EF1C037B5144A10BDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GreenVest;
+			packageProductDependencies = (
+			);
+			productName = GreenVest;
+			productReference = E18F5F17B12E373A3C67EFAF /* GreenVest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E145D927AFDEBC20DF02D6DC /* GreenVestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A70241C57AC003BD7E962D2E /* Build configuration list for PBXNativeTarget "GreenVestTests" */;
+			buildPhases = (
+				9393F5A9FF337E80AC24F58E /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				745C199EAE5D7A91EB07ABB7 /* PBXTargetDependency */,
+			);
+			name = GreenVestTests;
+			packageProductDependencies = (
+			);
+			productName = GreenVestTests;
+			productReference = 26A6622B7A269530E82B979F /* GreenVestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		41B9558453F701848192823C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					492554EDC4426CBE45D4E690 = {
+						TestTargetID = 94B154C5448D294F2196FA85;
+					};
+					94B154C5448D294F2196FA85 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 98BAE6C2E2D565D02F116498 /* Build configuration list for PBXProject "GreenVest" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A65697822ED5DA162594206A;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = BABE30960F64662D12BD0597 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				94B154C5448D294F2196FA85 /* GreenVest */,
+				E145D927AFDEBC20DF02D6DC /* GreenVestTests */,
+				492554EDC4426CBE45D4E690 /* GreenVestUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D6E592EF1C037B5144A10BDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5C30676BED7177D91125B5A /* Assets.xcassets in Resources */,
+				F4123EA3DC42CC3F360AAF5D /* Info 2.plist in Resources */,
+				639B6F6B15AC292BEB4A8AC1 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5B054E45F1F2F08DF1218E83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCAA2BB4E443A23BEB4BD084 /* GreenVestUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9393F5A9FF337E80AC24F58E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D859103B7C2BFC07642C962 /* BackendAPIClientTests.swift in Sources */,
+				2E826A9D0EAE5F56ECFB373E /* ViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6DC848AFD214104357325A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B774B3BDF909969A448060C0 /* AlertsSettingsViews.swift in Sources */,
+				D3072B1FF3E0EE3403E74C82 /* AppSupport.swift in Sources */,
+				44DE85B86F9006A41473BC45 /* AppTheme.swift in Sources */,
+				2CD30A520721B3642CBF163D /* BackendService.swift in Sources */,
+				E903E33FAD387BD4191B4A34 /* BasketComposerViews.swift in Sources */,
+				CC9810A4C1C88C028BF84779 /* ChatViews.swift in Sources */,
+				1CA73811DA9701F1D7CA3FD7 /* GreenVestApp.swift in Sources */,
+				CCC4C4D33022687522611763 /* MacroViews.swift in Sources */,
+				020A8F8D52958E7C5238E8B3 /* MetricsViews.swift in Sources */,
+				F8766EFFEB19C190D81F7BCB /* Models.swift in Sources */,
+				BFFCAD129B7264A0338CCAE0 /* RootTabView.swift in Sources */,
+				4B0123E813BC5F2E66F04FBF /* SharedViews.swift in Sources */,
+				5868612E2B1A30532DE6671E /* SimulationViews.swift in Sources */,
+				9845B26F346B3560A19C6A8B /* StocksViews.swift in Sources */,
+				D36C726E62F6D93AF8F0F246 /* ViewModels.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		250C53F9F616647011DF90B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94B154C5448D294F2196FA85 /* GreenVest */;
+			targetProxy = D0FBFF0D29BE6BE11DACA8D8 /* PBXContainerItemProxy */;
+		};
+		745C199EAE5D7A91EB07ABB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94B154C5448D294F2196FA85 /* GreenVest */;
+			targetProxy = 721E0B7D4394BD557B0B0CD9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1606D78D18C2AD96A2E12562 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniellobo.greenvest.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GreenVest;
+			};
+			name = Debug;
+		};
+		53D8AAE3A29857E27F9D074E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGNING_ALLOWED[sdk=iphonesimulator*]" = NO;
+				"CODE_SIGNING_REQUIRED[sdk=iphonesimulator*]" = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = GreenVest/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniellobo.greenvest;
+				PRODUCT_NAME = GreenVest;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		6F0C59EEE4F2B406D238C6FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGNING_ALLOWED[sdk=iphonesimulator*]" = NO;
+				"CODE_SIGNING_REQUIRED[sdk=iphonesimulator*]" = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphonesimulator*]" = "";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = GreenVest/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniellobo.greenvest;
+				PRODUCT_NAME = GreenVest;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		75BCA62FB9E1D9FE6BA05A70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		78193F18E0D0AE0A2A4E0102 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniellobo.greenvest.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GreenVest.app/GreenVest";
+			};
+			name = Release;
+		};
+		AF3AC7AACC903988BCF0516A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniellobo.greenvest.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GreenVest.app/GreenVest";
+			};
+			name = Debug;
+		};
+		C6E0C123F19724B5E9E2DA2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniellobo.greenvest.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GreenVest;
+			};
+			name = Release;
+		};
+		CD375870FFB73E9B11D3BA6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2293CA66401907E1DA219C5E /* Build configuration list for PBXNativeTarget "GreenVest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53D8AAE3A29857E27F9D074E /* Debug */,
+				6F0C59EEE4F2B406D238C6FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		98BAE6C2E2D565D02F116498 /* Build configuration list for PBXProject "GreenVest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75BCA62FB9E1D9FE6BA05A70 /* Debug */,
+				CD375870FFB73E9B11D3BA6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A70241C57AC003BD7E962D2E /* Build configuration list for PBXNativeTarget "GreenVestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF3AC7AACC903988BCF0516A /* Debug */,
+				78193F18E0D0AE0A2A4E0102 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F10383D8261698595AACC190 /* Build configuration list for PBXNativeTarget "GreenVestUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1606D78D18C2AD96A2E12562 /* Debug */,
+				C6E0C123F19724B5E9E2DA2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 41B9558453F701848192823C /* Project object */;
+}
