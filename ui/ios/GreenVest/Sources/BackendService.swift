@@ -229,11 +229,16 @@ final class BackendAPIClient: BackendServing {
 
     private func mapNetworkError(_ error: Error, url: URL?) -> Error {
         guard let urlError = error as? URLError else { return error }
+        if AppSettingsKeys.isPlaceholderCloudURL(url?.absoluteString) {
+            return NetworkError.cannotConnect(
+                "The public backend URL is still a placeholder. Deploy the backend, update `ui/ios/backend-config.json` in GitHub with the real API URL, or enter the deployed URL manually in Settings."
+            )
+        }
         let host = url?.host ?? "the backend"
         switch urlError.code {
         case .cannotConnectToHost, .cannotFindHost, .networkConnectionLost, .notConnectedToInternet, .timedOut:
             return NetworkError.cannotConnect(
-                "Could not connect to the cloud backend at \(host). Check that your public backend URL is correct and that the GitHub-managed deployment is live."
+                "Could not connect to the cloud backend at \(host). Check that your public backend URL is correct, that `ui/ios/backend-config.json` in GitHub points to the deployed API, and that the cloud deployment is live."
             )
         default:
             return urlError

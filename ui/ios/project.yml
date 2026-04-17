@@ -21,9 +21,6 @@ targets:
     info:
       path: GreenVest/Resources/Info.plist
       properties:
-        NSAppTransportSecurity:
-          NSAllowsLocalNetworking: true
-        NSLocalNetworkUsageDescription: GreenVest can connect to a backend for local debugging, but the intended production setup uses a public cloud backend.
         UILaunchStoryboardName: LaunchScreen
         UIApplicationSupportsIndirectInputEvents: true
         UISupportedInterfaceOrientations:

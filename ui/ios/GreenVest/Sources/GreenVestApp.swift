@@ -24,6 +24,9 @@ struct GreenVestApp: App {
                 notificationManager: notificationManager,
                 keychainStore: keychainStore
             )
+            .task {
+                await settingsStore.refreshBackendConfigurationIfNeeded()
+            }
             .task(id: settingsStore.notificationsEnabled) {
                 await notificationManager.configureIfNeeded(enabled: settingsStore.notificationsEnabled)
             }

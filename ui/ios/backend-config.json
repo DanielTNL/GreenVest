@@ -1,0 +1,8 @@
+{
+  "repo": "DanielTNL/GreenVest",
+  "branch": "main",
+  "source_of_truth": "github",
+  "deployment_status": "pending_public_backend",
+  "public_api_base_url": "https://greenvest-api-replace-me.fly.dev/api",
+  "notes": "Replace public_api_base_url with the deployed backend URL once the cloud backend is live."
+}

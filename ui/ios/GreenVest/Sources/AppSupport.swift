@@ -12,14 +12,26 @@ enum AppSettingsKeys {
     static let legacySimulatorBackendURLString = "http://127.0.0.1:8000/api"
     static let legacyDeviceBackendURLString = "http://192.168.8.25:8000/api"
     static let cloudBackendURLString = "https://greenvest-api-replace-me.fly.dev/api"
+    static let githubBackendConfigURLString = "https://raw.githubusercontent.com/DanielTNL/GreenVest/main/ui/ios/backend-config.json"
+    static let githubRepositoryURLString = "https://github.com/DanielTNL/GreenVest"
 
     static var defaultBackendURLString: String {
         cloudBackendURLString
     }
 
+    static func isPlaceholderCloudURL(_ value: String?) -> Bool {
+        guard let value else { return false }
+        return value == cloudBackendURLString || value.contains("greenvest-api-replace-me.fly.dev")
+    }
+
     static func isLegacyLocalURL(_ value: String?) -> Bool {
         guard let value else { return false }
         return value == legacySimulatorBackendURLString || value == legacyDeviceBackendURLString
+    }
+
+    static func shouldAutoReplaceBackendURL(_ value: String?) -> Bool {
+        guard let value else { return true }
+        return value.isEmpty || isLegacyLocalURL(value) || isPlaceholderCloudURL(value)
     }
 }
 
@@ -64,6 +76,36 @@ final class AppSettingsStore: ObservableObject {
         mathAgentEnabled = defaults.object(forKey: AppSettingsKeys.mathAgentEnabled) as? Bool ?? true
         opsAgentEnabled = defaults.object(forKey: AppSettingsKeys.opsAgentEnabled) as? Bool ?? true
         notificationsEnabled = defaults.object(forKey: AppSettingsKeys.notificationsEnabled) as? Bool ?? true
+    }
+
+    func refreshBackendConfigurationIfNeeded(force: Bool = false) async {
+        guard force || AppSettingsKeys.shouldAutoReplaceBackendURL(backendBaseURL) else { return }
+        guard let url = URL(string: AppSettingsKeys.githubBackendConfigURLString) else { return }
+
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse, (200 ..< 300).contains(httpResponse.statusCode) else {
+                return
+            }
+
+            let document = try JSONDecoder().decode(GitHubBackendConfiguration.self, from: data)
+            let remoteURL = document.publicAPIBaseURL.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !remoteURL.isEmpty else { return }
+            guard !AppSettingsKeys.isPlaceholderCloudURL(remoteURL) else { return }
+            guard let parsedURL = URL(string: remoteURL), parsedURL.scheme?.lowercased() == "https" else { return }
+
+            backendBaseURL = remoteURL
+        } catch {
+            return
+        }
+    }
+}
+
+private struct GitHubBackendConfiguration: Decodable {
+    let publicAPIBaseURL: String
+
+    enum CodingKeys: String, CodingKey {
+        case publicAPIBaseURL = "public_api_base_url"
     }
 }
 

@@ -78,6 +78,11 @@ struct AlertsSettingsScreen: View {
                                 .focused($focusedField, equals: .backendURL)
                                 .accessibilityIdentifier("backend_url_field")
 
+                            Button("Sync Backend From GitHub") {
+                                Task { await settingsStore.refreshBackendConfigurationIfNeeded(force: true) }
+                            }
+                            .buttonStyle(.bordered)
+
                             Picker("Update Frequency", selection: $settingsStore.updateFrequency) {
                                 ForEach(UpdateFrequency.allCases) { frequency in
                                     Text(frequency.title).tag(frequency)
@@ -101,15 +106,20 @@ struct AlertsSettingsScreen: View {
                                 .tint(.gvAccent)
                             }
 
-                            Text("Use your public backend URL here, for example `https://your-fly-app.fly.dev/api`. The app should talk to a deployed backend, not to your Mac on the same network.")
+                            Text("Use your public backend URL here, for example `https://your-fly-app.fly.dev/api`. If this field is still a placeholder, the app will try to sync it from `ui/ios/backend-config.json` in the GitHub repo first.")
                                 .font(.footnote)
                                 .foregroundStyle(.secondary)
                         }
 
                         ContentCard(title: "GitHub-Managed Secrets") {
-                            Text("Runtime API keys should live in GitHub Actions secrets and be pushed into your cloud host during deployment. The iPhone app should not be the source of truth for provider keys.")
+                            Text("Runtime API keys should live in GitHub Actions secrets and be pushed into your cloud host during deployment. The iPhone app should not be the source of truth for provider keys, and the backend URL should be synced from GitHub config or your deployed cloud URL.")
                                 .foregroundStyle(.secondary)
                             VStack(alignment: .leading, spacing: 6) {
+                                Text("GitHub backend config")
+                                    .font(.subheadline.weight(.semibold))
+                                Text("`ui/ios/backend-config.json`")
+                                    .font(.footnote)
+                                    .foregroundStyle(.secondary)
                                 Text("Required GitHub secrets")
                                     .font(.subheadline.weight(.semibold))
                                 Text("`FLY_API_TOKEN`, `ALPHAVANTAGE_API_KEY`, `FMP_API_KEY`, `EODHD_API_KEY`, `FRED_API_KEY`, `OPENAI_API_KEY`")
