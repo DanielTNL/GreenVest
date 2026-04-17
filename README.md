@@ -208,6 +208,42 @@ Use:
 
 This works well with the current codebase because the backend still uses local SQLite files and APScheduler.
 
+### No-Fly Alternative: Render
+
+If you do not want to use Fly.io, the cleanest alternative for this repository is Render.
+
+Why Render fits this codebase well:
+
+- it can deploy directly from your linked GitHub repository
+- it supports Docker-based services, which matches this repo's `Dockerfile`
+- it supports persistent disks for stateful services
+- it does not require a Fly API token
+
+This repository now includes [render.yaml](/Users/daniellobo/Documents/Playground/GreenVest/render.yaml) so you can create a Render Blueprint from GitHub.
+
+#### Render Setup Steps
+
+1. Sign in to Render and connect your GitHub account to the `DanielTNL/GreenVest` repository.
+2. Create a new Blueprint or Web Service from this repository.
+3. Use the root `render.yaml` file.
+4. In the Render dashboard, set the secret environment variables:
+   - `ALPHAVANTAGE_API_KEY`
+   - `FMP_API_KEY`
+   - `EODHD_API_KEY`
+   - `FRED_API_KEY`
+   - `OPENAI_API_KEY`
+   - optionally `OPENAI_MODEL`
+   - optionally `GEOPOLITICAL_RISK_FRED_SERIES_ID`
+   - optionally `GEOPOLITICAL_RISK_SERIES_NAME`
+5. Keep the persistent disk mounted at `/data`.
+6. After Render gives you a public URL such as `https://<your-service>.onrender.com`, update:
+   - [ui/ios/backend-config.json](/Users/daniellobo/Documents/Playground/GreenVest/ui/ios/backend-config.json)
+   Set `public_api_base_url` to:
+   - `https://<your-service>.onrender.com/api`
+7. Reopen the iPhone app or tap `Sync Backend From GitHub` in Settings.
+
+At that point, the app will stop relying on your Mac and will use the public Render backend instead.
+
 ### First-Time Cloud Deploy Steps
 
 1. Push `/Users/daniellobo/Documents/Playground/ai_investment_backend` to a GitHub repository.
@@ -249,8 +285,8 @@ This is the cleanest architecture for the current app. GitHub is excellent for c
 
 ### Why GitHub Alone Is Not Enough
 
-GitHub stores code and can run CI/CD workflows.
-It does not keep this Python API, scheduler, and SQLite state running continuously for your app users.
+GitHub stores code and can run CI/CD workflows, but it is not a persistent backend host for this app.
+GitHub-hosted Actions jobs have a maximum execution time of 6 hours, so they cannot serve as your always-on API and scheduler runtime.
 That runtime must live on a real host such as Fly.io, Render, Railway, or another always-on service.
 
 ### Important Caveat
