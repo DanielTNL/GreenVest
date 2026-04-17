@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: greenvest-api
+    runtime: docker
+    plan: starter
+    region: frankfurt
+    healthCheckPath: /api/health
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: APP_STORAGE_ROOT
+        value: /data
+      - key: PORT
+        value: "8080"
+      - key: RUN_SCHEDULER
+        value: "true"
+      - key: ALPHAVANTAGE_API_KEY
+        sync: false
+      - key: FMP_API_KEY
+        sync: false
+      - key: EODHD_API_KEY
+        sync: false
+      - key: FRED_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: GEOPOLITICAL_RISK_FRED_SERIES_ID
+        sync: false
+      - key: GEOPOLITICAL_RISK_SERIES_NAME
+        value: Geopolitical Risk Index
+    disk:
+      name: greenvest-data
+      mountPath: /data
+      sizeGB: 5
