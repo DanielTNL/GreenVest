@@ -21,7 +21,7 @@ enum AppSettingsKeys {
 
     static func isPlaceholderCloudURL(_ value: String?) -> Bool {
         guard let value else { return false }
-        return value == cloudBackendURLString || value.contains("greenvest-api-replace-me.fly.dev")
+        return value == cloudBackendURLString || value.contains("replace-me")
     }
 
     static func isLegacyLocalURL(_ value: String?) -> Bool {
