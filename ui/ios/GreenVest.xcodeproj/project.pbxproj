@@ -26,7 +26,6 @@
 		D3072B1FF3E0EE3403E74C82 /* AppSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15398B6A963CCE85D87F1DDF /* AppSupport.swift */; };
 		D36C726E62F6D93AF8F0F246 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515A9A638BFF56E33DFD3E73 /* ViewModels.swift */; };
 		E903E33FAD387BD4191B4A34 /* BasketComposerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB05AB430FCAC7CAA23471 /* BasketComposerViews.swift */; };
-		F4123EA3DC42CC3F360AAF5D /* Info 2.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFB23200C99DCE7A4CE6CB22 /* Info 2.plist */; };
 		F8766EFFEB19C190D81F7BCB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B738B4BE25F5FD86DE7F1A4 /* Models.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,9 +52,9 @@
 		0B738B4BE25F5FD86DE7F1A4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		15398B6A963CCE85D87F1DDF /* AppSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSupport.swift; sourceTree = "<group>"; };
 		1F7C374FBA2262FEDD64978F /* StocksViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViews.swift; sourceTree = "<group>"; };
-		26A6622B7A269530E82B979F /* GreenVestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenVestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26A6622B7A269530E82B979F /* GreenVestTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = GreenVestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B31867940C669DA6D2CF586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		38BA3A2033A3354491EC0DF2 /* GreenVestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenVestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		38BA3A2033A3354491EC0DF2 /* GreenVestUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = GreenVestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA66229033E07AECFC077F7 /* BackendAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendAPIClientTests.swift; sourceTree = "<group>"; };
 		4D8847D59C03AB1B9E2F55C9 /* SimulationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationViews.swift; sourceTree = "<group>"; };
 		515A9A638BFF56E33DFD3E73 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
@@ -69,8 +68,7 @@
 		C08FD5E455120FC93071148D /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		C645056251733709ED4E522C /* ChatViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViews.swift; sourceTree = "<group>"; };
 		DFCD1ACB1402E497F226285C /* AlertsSettingsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsSettingsViews.swift; sourceTree = "<group>"; };
-		E18F5F17B12E373A3C67EFAF /* GreenVest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenVest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFB23200C99DCE7A4CE6CB22 /* Info 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info 2.plist"; sourceTree = "<group>"; };
+		E18F5F17B12E373A3C67EFAF /* GreenVest.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = GreenVest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9143BA6FB16A9A0E164C071 /* GreenVestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenVestUITests.swift; sourceTree = "<group>"; };
 		FFBA91096E6FA466E79F1EE4 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,7 +77,6 @@
 		22E97512018848C65E5C5D3F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EFB23200C99DCE7A4CE6CB22 /* Info 2.plist */,
 				2B31867940C669DA6D2CF586 /* Info.plist */,
 				66DB118D1201C5A109A6E5C7 /* LaunchScreen.storyboard */,
 			);
@@ -223,7 +220,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					492554EDC4426CBE45D4E690 = {
 						TestTargetID = 94B154C5448D294F2196FA85;
@@ -260,7 +257,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5C30676BED7177D91125B5A /* Assets.xcassets in Resources */,
-				F4123EA3DC42CC3F360AAF5D /* Info 2.plist in Resources */,
 				639B6F6B15AC292BEB4A8AC1 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,7 +391,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -427,10 +422,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H4R6GPHR2C;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -450,7 +443,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -515,7 +507,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -547,10 +538,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = H4R6GPHR2C;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -563,7 +552,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;

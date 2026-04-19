@@ -11,7 +11,7 @@ enum AppSettingsKeys {
     static let notificationsEnabled = "notifications_enabled"
     static let legacySimulatorBackendURLString = "http://127.0.0.1:8000/api"
     static let legacyDeviceBackendURLString = "http://192.168.8.25:8000/api"
-    static let cloudBackendURLString = "https://greenvest-api-replace-me.fly.dev/api"
+    static let cloudBackendURLString = "https://greenvest-api.fly.dev/api"
     static let githubBackendConfigURLString = "https://raw.githubusercontent.com/DanielTNL/GreenVest/main/ui/ios/backend-config.json"
     static let githubRepositoryURLString = "https://github.com/DanielTNL/GreenVest"
 

@@ -106,7 +106,7 @@ struct AlertsSettingsScreen: View {
                                 .tint(.gvAccent)
                             }
 
-                            Text("Use your public backend URL here, for example `https://your-fly-app.fly.dev/api`. If this field is still a placeholder, the app will try to sync it from `ui/ios/backend-config.json` in the GitHub repo first.")
+                            Text("Use your public backend URL here, for example `https://greenvest-api.fly.dev/api`. If this field is still a placeholder, the app will try to sync it from `ui/ios/backend-config.json` in the GitHub repo first.")
                                 .font(.footnote)
                                 .foregroundStyle(.secondary)
                         }
@@ -123,6 +123,11 @@ struct AlertsSettingsScreen: View {
                                 Text("Required GitHub secrets")
                                     .font(.subheadline.weight(.semibold))
                                 Text("`FLY_API_TOKEN`, `ALPHAVANTAGE_API_KEY`, `FMP_API_KEY`, `EODHD_API_KEY`, `FRED_API_KEY`, `OPENAI_API_KEY`")
+                                    .font(.footnote)
+                                    .foregroundStyle(.secondary)
+                                Text("Required GitHub variable")
+                                    .font(.subheadline.weight(.semibold))
+                                Text("`FLY_APP_NAME`")
                                     .font(.footnote)
                                     .foregroundStyle(.secondary)
                                 Text("Optional GitHub secrets")

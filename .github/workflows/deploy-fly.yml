@@ -6,6 +6,13 @@ on:
     branches:
       - main
 
+concurrency:
+  group: deploy-fly-main
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,23 +23,96 @@ jobs:
       - name: Setup flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
 
-      - name: Sync GitHub secrets to Fly.io
-        run: |
-          flyctl secrets set \
-            ALPHAVANTAGE_API_KEY="${{ secrets.ALPHAVANTAGE_API_KEY }}" \
-            FMP_API_KEY="${{ secrets.FMP_API_KEY }}" \
-            EODHD_API_KEY="${{ secrets.EODHD_API_KEY }}" \
-            FRED_API_KEY="${{ secrets.FRED_API_KEY }}" \
-            OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
-            OPENAI_MODEL="${{ secrets.OPENAI_MODEL }}" \
-            GEOPOLITICAL_RISK_FRED_SERIES_ID="${{ secrets.GEOPOLITICAL_RISK_FRED_SERIES_ID }}" \
-            GEOPOLITICAL_RISK_SERIES_NAME="${{ secrets.GEOPOLITICAL_RISK_SERIES_NAME }}" \
-            RUN_SCHEDULER="true" \
-            --app "${{ vars.FLY_APP_NAME }}"
+      - name: Validate deployment inputs
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          FLY_APP_NAME: ${{ vars.FLY_APP_NAME }}
+          ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          missing=()
+          for name in FLY_API_TOKEN FLY_APP_NAME ALPHAVANTAGE_API_KEY FMP_API_KEY EODHD_API_KEY FRED_API_KEY OPENAI_API_KEY; do
+            if [ -z "${!name}" ]; then
+              missing+=("$name")
+            fi
+          done
+          if [ "${#missing[@]}" -gt 0 ]; then
+            echo "Missing required deployment values: ${missing[*]}" >&2
+            exit 1
+          fi
+
+      - name: Sync GitHub secrets to Fly.io
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          FLY_APP_NAME: ${{ vars.FLY_APP_NAME }}
+          ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          GEOPOLITICAL_RISK_FRED_SERIES_ID: ${{ secrets.GEOPOLITICAL_RISK_FRED_SERIES_ID }}
+          GEOPOLITICAL_RISK_SERIES_NAME: ${{ secrets.GEOPOLITICAL_RISK_SERIES_NAME }}
+        run: |
+          args=(
+            secrets set
+            "ALPHAVANTAGE_API_KEY=${ALPHAVANTAGE_API_KEY}"
+            "FMP_API_KEY=${FMP_API_KEY}"
+            "EODHD_API_KEY=${EODHD_API_KEY}"
+            "FRED_API_KEY=${FRED_API_KEY}"
+            "OPENAI_API_KEY=${OPENAI_API_KEY}"
+            "RUN_SCHEDULER=true"
+          )
+          if [ -n "${OPENAI_MODEL}" ]; then
+            args+=("OPENAI_MODEL=${OPENAI_MODEL}")
+          fi
+          if [ -n "${GEOPOLITICAL_RISK_FRED_SERIES_ID}" ]; then
+            args+=("GEOPOLITICAL_RISK_FRED_SERIES_ID=${GEOPOLITICAL_RISK_FRED_SERIES_ID}")
+          fi
+          if [ -n "${GEOPOLITICAL_RISK_SERIES_NAME}" ]; then
+            args+=("GEOPOLITICAL_RISK_SERIES_NAME=${GEOPOLITICAL_RISK_SERIES_NAME}")
+          fi
+          args+=(--app "${FLY_APP_NAME}")
+          flyctl "${args[@]}"
 
       - name: Deploy to Fly.io
-        run: flyctl deploy --remote-only --config fly.toml --app "${{ vars.FLY_APP_NAME }}"
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          FLY_APP_NAME: ${{ vars.FLY_APP_NAME }}
+        run: flyctl deploy --remote-only --config fly.toml --app "${FLY_APP_NAME}"
+
+      - name: Smoke test deployed API
+        env:
+          FLY_APP_NAME: ${{ vars.FLY_APP_NAME }}
+        run: |
+          base_url="https://${FLY_APP_NAME}.fly.dev/api"
+          for endpoint in health diagnostics; do
+            success=""
+            for attempt in $(seq 1 12); do
+              if curl --fail --silent --show-error --max-time 20 "${base_url}/${endpoint}" -o "/tmp/${endpoint}.json"; then
+                success="yes"
+                break
+              fi
+              sleep 5
+            done
+            if [ -z "${success}" ]; then
+              echo "Smoke test failed for ${base_url}/${endpoint}" >&2
+              exit 1
+            fi
+          done
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          health = json.loads(Path("/tmp/health.json").read_text())
+          diagnostics = json.loads(Path("/tmp/diagnostics.json").read_text())
+
+          assert health.get("status") == "ok", health
+          assert diagnostics.get("econometrics", {}).get("risk_engine", {}).get("operational") is True, diagnostics
+          assert "readiness" in diagnostics, diagnostics
+
+          print("Health and diagnostics smoke checks passed.")
+          PY

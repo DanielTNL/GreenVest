@@ -1,4 +1,4 @@
-app = "greenvest-api-replace-me"
+app = "greenvest-api"
 primary_region = "ams"
 
 [build]

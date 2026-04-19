@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import importlib.util
+import warnings
 from typing import Any
 
 from analytics.forecasting import DependencyUnavailableError, generate_forecast
@@ -47,6 +48,7 @@ def run_backend_diagnostics(settings: Settings | None = None) -> dict[str, Any]:
             },
         },
         "geopolitical": geopolitical,
+        "readiness": _readiness_status(api_keys, econometrics, geopolitical, assistant, system_status),
         "recommendations": _recommendations(api_keys, dependencies, econometrics, geopolitical, assistant, system_status),
     }
 
@@ -128,9 +130,23 @@ def _econometric_status() -> dict[str, Any]:
         dates=[f"2026-01-{index + 1:02d}" for index in range(len(returns))],
         exogenous={"macro": [0.1] * len(returns)},
     )
+    advanced_model_names = ("arima", "garch", "prophet")
+    warning_messages = sorted(
+        {
+            warning
+            for name in advanced_model_names
+            for warning in models[name].get("warnings", [])
+        }
+    )
     return {
         "risk_engine": risk_status,
         "forecast_models": models,
+        "advanced_model_names": list(advanced_model_names),
+        "advanced_models_ready": all(
+            models[name].get("operational") and not models[name].get("warnings")
+            for name in advanced_model_names
+        ),
+        "warning_messages": warning_messages,
     }
 
 
@@ -146,23 +162,49 @@ def _forecast_model_check(
             exogenous_future = {"macro": [0.1, 0.1]} if isinstance(exogenous, dict) else None
         else:
             exogenous_future = None
-        result = generate_forecast(
-            model_name,
-            series,
-            horizon=2,
-            dates=dates,
-            exogenous=exogenous,
-            exogenous_future=exogenous_future,
+        with warnings.catch_warnings(record=True) as caught_warnings:
+            warnings.simplefilter("always")
+            result = generate_forecast(
+                model_name,
+                series,
+                horizon=2,
+                dates=dates,
+                exogenous=exogenous,
+                exogenous_future=exogenous_future,
+            )
+        warning_messages = sorted(
+            {
+                str(item.message).strip()
+                for item in caught_warnings
+                if str(item.message).strip()
+            }
         )
         return {
             "operational": True,
             "prediction_count": len(result.predictions),
             "supports_exogenous": bool(exogenous is not None),
+            "readiness": "warning" if warning_messages else "ok",
+            "warning_count": len(warning_messages),
+            "warnings": warning_messages,
         }
     except DependencyUnavailableError as exc:
-        return {"operational": False, "reason": "dependency_unavailable", "error": str(exc)}
+        return {
+            "operational": False,
+            "reason": "dependency_unavailable",
+            "error": str(exc),
+            "readiness": "blocked",
+            "warning_count": 0,
+            "warnings": [],
+        }
     except Exception as exc:
-        return {"operational": False, "reason": "runtime_error", "error": str(exc)}
+        return {
+            "operational": False,
+            "reason": "runtime_error",
+            "error": str(exc),
+            "readiness": "blocked",
+            "warning_count": 0,
+            "warnings": [],
+        }
 
 
 def _geopolitical_status(settings: Settings, repository: MarketRepository) -> dict[str, Any]:
@@ -190,6 +232,56 @@ def _assistant_status(settings: Settings) -> dict[str, Any]:
         "mode": "openai" if settings.openai_api_key else "rules_only",
         "openai_configured": bool(settings.openai_api_key),
         "openai_model": settings.openai_model if settings.openai_api_key else None,
+    }
+
+
+def _readiness_status(
+    api_keys: dict[str, dict[str, Any]],
+    econometrics: dict[str, Any],
+    geopolitical: dict[str, Any],
+    assistant: dict[str, Any],
+    system_status: dict[str, Any],
+) -> dict[str, Any]:
+    required_provider_keys = ("alpha_vantage", "fmp", "eodhd", "fred")
+    cloud_deploy_ready = all(api_keys[name]["configured"] for name in required_provider_keys)
+    risk_engine_ready = bool(econometrics["risk_engine"].get("operational"))
+    advanced_models_ready = bool(econometrics.get("advanced_models_ready"))
+    geopolitical_ready = bool(geopolitical["prediction_market_feed_operational"]) and (
+        not geopolitical["fred_series_configured"] or geopolitical["fred_indicator_ingested"]
+    )
+
+    warnings_list: list[str] = []
+    blocking_issues: list[str] = []
+
+    if econometrics.get("warning_messages"):
+        warnings_list.extend(
+            f"Forecast model warning: {message}" for message in econometrics["warning_messages"]
+        )
+    if not assistant["openai_configured"]:
+        warnings_list.append("OPENAI_API_KEY is not configured; assistant responses will remain rules-only.")
+    if system_status["stock_count"] == 0:
+        warnings_list.append("No tracked stocks are stored yet; the app will show sparse dashboards until ETL runs.")
+    if not geopolitical["prediction_market_feed_operational"]:
+        warnings_list.append("Polymarket prediction-market data has not been ingested yet.")
+
+    if not cloud_deploy_ready:
+        blocking_issues.append("One or more required provider API keys are missing.")
+    if not risk_engine_ready:
+        blocking_issues.append("The risk engine is not operational.")
+    if not advanced_models_ready:
+        warnings_list.append("Advanced forecasting models are not fully ready yet; baseline models remain available.")
+    if geopolitical["fred_series_configured"] and not geopolitical["fred_indicator_ingested"]:
+        warnings_list.append("A FRED geopolitical series is configured but has not been ingested yet.")
+
+    return {
+        "operational": not blocking_issues,
+        "cloud_deploy_ready": cloud_deploy_ready,
+        "risk_engine_ready": risk_engine_ready,
+        "advanced_models_ready": advanced_models_ready,
+        "assistant_ready": bool(assistant["openai_configured"]),
+        "geopolitical_ready": geopolitical_ready,
+        "warnings": warnings_list,
+        "blocking_issues": blocking_issues,
     }
 
 

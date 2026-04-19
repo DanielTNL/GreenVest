@@ -26,8 +26,11 @@ class DiagnosticsTests(unittest.TestCase):
         self.assertIn("econometrics", diagnostics)
         self.assertIn("assistant", diagnostics)
         self.assertIn("geopolitical", diagnostics)
+        self.assertIn("readiness", diagnostics)
         self.assertIn("recommendations", diagnostics)
         self.assertTrue(diagnostics["econometrics"]["risk_engine"]["operational"])
+        self.assertIn("cloud_deploy_ready", diagnostics["readiness"])
+        self.assertIn("advanced_models_ready", diagnostics["readiness"])
 
 
 if __name__ == "__main__":

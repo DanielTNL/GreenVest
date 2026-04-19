@@ -48,6 +48,17 @@ class AppServiceTests(unittest.TestCase):
         self.assertEqual(basket["name"], "Tech Leaders")
         self.assertEqual(len(basket["constituents"]), 2)
 
+    def test_simulation_options_include_saved_baskets(self) -> None:
+        basket = self.service.create_basket(
+            name="Core Portfolio",
+            description="Reusable saved basket",
+            symbols=["AAPL", "MSFT"],
+            equal_weight=True,
+        )
+        options = self.service.simulation_options()
+        basket_names = [item["name"] for item in options["baskets"]]
+        self.assertIn(basket["name"], basket_names)
+
     def test_run_simulation_returns_comparative_result(self) -> None:
         result = self.service.run_simulation(
             asset_kind="stock",

@@ -2,8 +2,8 @@
   "repo": "DanielTNL/GreenVest",
   "branch": "main",
   "source_of_truth": "github",
-  "preferred_deployment_provider": "render",
-  "deployment_status": "pending_public_backend",
-  "public_api_base_url": "https://greenvest-api-replace-me.fly.dev/api",
-  "notes": "Replace public_api_base_url with the deployed backend URL once the cloud backend is live. A Render deployment can use an onrender.com URL and does not require a Fly API token."
+  "preferred_deployment_provider": "fly",
+  "deployment_status": "awaiting_first_fly_deploy",
+  "public_api_base_url": "https://greenvest-api.fly.dev/api",
+  "notes": "GitHub is the source of truth for the public backend URL. This repo is standardized on Fly.io with FLY_APP_NAME=greenvest-api."
 }

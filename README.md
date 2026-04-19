@@ -46,7 +46,7 @@ export PORT="8080"
 export RUN_SCHEDULER="true"
 ```
 
-An example file is provided at [config/env.example](/Users/daniellobo/Documents/Playground/ai_investment_backend/config/env.example).
+An example file is provided at [config/env.example](/Users/daniellobo/Documents/Playground/GreenVest/config/env.example).
 
 No API keys are hard-coded anywhere in the codebase.
 
@@ -65,7 +65,7 @@ Optional geopolitical configuration notes:
 Core runtime:
 
 ```bash
-cd /Users/daniellobo/Documents/Playground/ai_investment_backend
+cd /Users/daniellobo/Documents/Playground/GreenVest
 python3 -m pip install -r requirements.txt
 ```
 
@@ -208,46 +208,10 @@ Use:
 
 This works well with the current codebase because the backend still uses local SQLite files and APScheduler.
 
-### No-Fly Alternative: Render
-
-If you do not want to use Fly.io, the cleanest alternative for this repository is Render.
-
-Why Render fits this codebase well:
-
-- it can deploy directly from your linked GitHub repository
-- it supports Docker-based services, which matches this repo's `Dockerfile`
-- it supports persistent disks for stateful services
-- it does not require a Fly API token
-
-This repository now includes [render.yaml](/Users/daniellobo/Documents/Playground/GreenVest/render.yaml) so you can create a Render Blueprint from GitHub.
-
-#### Render Setup Steps
-
-1. Sign in to Render and connect your GitHub account to the `DanielTNL/GreenVest` repository.
-2. Create a new Blueprint or Web Service from this repository.
-3. Use the root `render.yaml` file.
-4. In the Render dashboard, set the secret environment variables:
-   - `ALPHAVANTAGE_API_KEY`
-   - `FMP_API_KEY`
-   - `EODHD_API_KEY`
-   - `FRED_API_KEY`
-   - `OPENAI_API_KEY`
-   - optionally `OPENAI_MODEL`
-   - optionally `GEOPOLITICAL_RISK_FRED_SERIES_ID`
-   - optionally `GEOPOLITICAL_RISK_SERIES_NAME`
-5. Keep the persistent disk mounted at `/data`.
-6. After Render gives you a public URL such as `https://<your-service>.onrender.com`, update:
-   - [ui/ios/backend-config.json](/Users/daniellobo/Documents/Playground/GreenVest/ui/ios/backend-config.json)
-   Set `public_api_base_url` to:
-   - `https://<your-service>.onrender.com/api`
-7. Reopen the iPhone app or tap `Sync Backend From GitHub` in Settings.
-
-At that point, the app will stop relying on your Mac and will use the public Render backend instead.
-
 ### First-Time Cloud Deploy Steps
 
-1. Push `/Users/daniellobo/Documents/Playground/ai_investment_backend` to a GitHub repository.
-2. Create a Fly.io app and change `app = "greenvest-api-replace-me"` in [fly.toml](/Users/daniellobo/Documents/Playground/ai_investment_backend/fly.toml) to your real Fly app name.
+1. Push `/Users/daniellobo/Documents/Playground/GreenVest` to the `DanielTNL/GreenVest` GitHub repository.
+2. Create the Fly.io app named `greenvest-api` or update [fly.toml](/Users/daniellobo/Documents/Playground/GreenVest/fly.toml) and `FLY_APP_NAME` together if you need a different unique app name.
 3. Create a persistent Fly volume named `greenvest_data` mounted at `/data`.
 4. In the GitHub repository, add these Actions secrets:
    - `FLY_API_TOKEN`
@@ -264,7 +228,7 @@ At that point, the app will stop relying on your Mac and will use the public Ren
 6. Push to `main` or run the `Deploy Backend` workflow manually.
    The workflow now syncs the GitHub secrets into Fly.io and then deploys the backend.
 7. In the iPhone app, set the Cloud Backend URL to:
-   - `https://<your-fly-app-name>.fly.dev/api`
+   - `https://greenvest-api.fly.dev/api`
 
 ### GitHub Role Versus Runtime Role
 
@@ -287,7 +251,7 @@ This is the cleanest architecture for the current app. GitHub is excellent for c
 
 GitHub stores code and can run CI/CD workflows, but it is not a persistent backend host for this app.
 GitHub-hosted Actions jobs have a maximum execution time of 6 hours, so they cannot serve as your always-on API and scheduler runtime.
-That runtime must live on a real host such as Fly.io, Render, Railway, or another always-on service.
+That runtime must live on a real host such as Fly.io, Railway, or another always-on service.
 
 ### Important Caveat
 
@@ -379,7 +343,7 @@ Scheduled simulations use saved baskets from `baskets` and `basket_constituents`
 ## Project Structure
 
 ```text
-ai_investment_backend/
+GreenVest/
   data/
     raw/
     processed/
@@ -437,26 +401,26 @@ python3 -m unittest discover -s tests
 
 ### iOS App
 
-The native SwiftUI client lives in [ui/ios](/Users/daniellobo/Documents/Playground/ai_investment_backend/ui/ios) and targets iOS 17 on iPhone 15 or later.
+The native SwiftUI client lives in [ui/ios](/Users/daniellobo/Documents/Playground/GreenVest/ui/ios) and targets iOS 17 on iPhone 15 or later.
 
 Generate the Xcode project with XcodeGen:
 
 ```bash
-cd /Users/daniellobo/Documents/Playground/ai_investment_backend/ui/ios
+cd /Users/daniellobo/Documents/Playground/GreenVest/ui/ios
 xcodegen generate
 ```
 
 Run the backend API first:
 
 ```bash
-cd /Users/daniellobo/Documents/Playground/ai_investment_backend
+cd /Users/daniellobo/Documents/Playground/GreenVest
 python3 scripts/run_local_api.py
 ```
 
 Then build the iOS app:
 
 ```bash
-cd /Users/daniellobo/Documents/Playground/ai_investment_backend/ui/ios
+cd /Users/daniellobo/Documents/Playground/GreenVest/ui/ios
 xcodegen generate
 xcodebuild \
   -project GreenVest.xcodeproj \
@@ -483,7 +447,7 @@ The iOS app stores API key entries in the Keychain, but the current backend stil
 iOS tests:
 
 ```bash
-cd /Users/daniellobo/Documents/Playground/ai_investment_backend/ui/ios
+cd /Users/daniellobo/Documents/Playground/GreenVest/ui/ios
 xcodegen generate
 xcodebuild \
   test \
@@ -506,4 +470,4 @@ xcodebuild \
 - more explicit exogenous feature alignment in forecasting pipelines
 - model-parameter persistence straight from fitted model objects
 - a Streamlit UI layered onto this backend
-- Docker and CI setup
+- App Intents for shortcuts and automation
